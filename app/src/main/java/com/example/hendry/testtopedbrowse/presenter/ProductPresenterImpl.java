@@ -66,8 +66,10 @@ public class ProductPresenterImpl implements ProductPresenter {
         data.put(BrowseApi.ROWS, "12");
         data.put(BrowseApi.Q, lastKeyword);
         data.put(BrowseApi.OB, "23");
+        data.put(BrowseApi.TERMS, "true");
         data.put(BrowseApi.IMAGE_SIZE, "200");
         data.put(BrowseApi.IMAGE_SQUARE, "true");
+        // should be unique per user/ device, currently hardcode
         data.put(BrowseApi.UNIQUE_ID, "c6305821a23a6c98ba12bc6920b22553");
         data.put(BrowseApi.SOURCE, "search_product");
         productInteractor.getProducts(data, view, compositeDisposable);

@@ -1,5 +1,6 @@
 package com.example.hendry.testtopedbrowse;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.GridLayoutManager;
@@ -11,6 +12,7 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 
 import com.example.hendry.testtopedbrowse.adapter.ProductAdapter;
 import com.example.hendry.testtopedbrowse.network.model.Product;
@@ -195,7 +197,6 @@ public class MainActivity extends AppCompatActivity
 
     @Override
     public boolean onQueryTextSubmit(String keyword) {
-        // TODO on Submit search
         productAdapter.setData(null);
         productAdapter.notifyDataSetChanged();
         Log.i("Test", "On Submit Search");
@@ -203,14 +204,19 @@ public class MainActivity extends AppCompatActivity
                 0,
                 this,
                 mCompositeDisposable);
-        return false;
+        View view = getCurrentFocus();
+        if (view != null) {
+            InputMethodManager imm = (InputMethodManager)getSystemService (Context.INPUT_METHOD_SERVICE);
+            imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
+        }
+        return true;
     }
 
     @Override
     public boolean onQueryTextChange(String newText) {
         // TODO on Change, give recommendation
         Log.i("Test", "On Query Text Change");
-        return false;
+        return true;
     }
 
     @Override
