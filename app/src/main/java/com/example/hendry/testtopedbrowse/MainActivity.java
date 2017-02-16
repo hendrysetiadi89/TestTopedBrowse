@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity
 
         mLayoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setAdapter(productAdapter = new ProductAdapter(this, null, this));
+        recyclerView.setAdapter(productAdapter = new ProductAdapter(this, null));
 
         fastScroller.setRecyclerView(recyclerView);
 

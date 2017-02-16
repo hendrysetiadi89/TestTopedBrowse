@@ -25,20 +25,20 @@ import java.util.List;
 public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
     // how many item before loadmore
-    public static final int VISIBLE_THRESHOLD = 1;
+    private static final int VISIBLE_THRESHOLD = 1;
 
     //TYPE
-    public static final int VIEW_TYPE_ITEM = 1;
-    public static final int VIEW_TYPE_LOADING = 2;
+    private static final int VIEW_TYPE_ITEM = 1;
+    private static final int VIEW_TYPE_LOADING = 2;
 
     // to indicate is the adapter is in loading state
-    boolean mIsLoading;
+    private boolean mIsLoading;
 
-    class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+    private class ProductViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         ImageView imageProduct;
         TextView textProduct;
 
-        public ProductViewHolder(View itemView) {
+        ProductViewHolder(View itemView) {
             super(itemView);
             textProduct = (TextView) itemView.findViewById(R.id.text_product);
             imageProduct = (ImageView) itemView.findViewById(R.id.image_product);
@@ -53,21 +53,19 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         }
     }
 
-    public class LoadingViewHolder extends RecyclerView.ViewHolder{
-        public ProgressBar progressBar;
-        public LoadingViewHolder(View view) {
+    private class LoadingViewHolder extends RecyclerView.ViewHolder{
+        private ProgressBar progressBar;
+        LoadingViewHolder(View view) {
             super(view);
             progressBar = (ProgressBar) view.findViewById(R.id.progress_bar);
         }
     }
 
-    List<Product> productList;
-    Context mContext;
-    ProductView view;
-    public ProductAdapter (Context context, List<Product> productList, ProductView view){
+    private List<Product> productList;
+    private Context mContext;
+    public ProductAdapter (Context context, List<Product> productList){
         this.productList = productList;
         this.mContext = context;
-        this.view = view;
     }
 
     public void setData (List<Product> productList){
