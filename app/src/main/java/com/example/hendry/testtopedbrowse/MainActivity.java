@@ -60,6 +60,7 @@ public class MainActivity extends AppCompatActivity
 
         getSupportActionBar().setTitle("Product List");
 
+        initCompositeDisposable();
         productPresenter = new ProductPresenterImpl(this);
 
         unbinder = ButterKnife.bind(this);
@@ -177,18 +178,17 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    protected void onResume() {
-        super.onResume();
-        initCompositeDisposable();
-    }
-
-    @Override
     protected void onPause() {
         super.onPause();
         if (isFinishing()) {
             unbinder.unbind();
             unbinder = null;
         }
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
         if (null!= mCompositeDisposable) {
             mCompositeDisposable.clear();
             mCompositeDisposable = null;
