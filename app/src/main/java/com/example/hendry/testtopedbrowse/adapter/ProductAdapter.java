@@ -75,7 +75,13 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     }
 
     public void addMoreData (List<Product> productList){
+        int prevSize = this.productList.size();
+        int addedSize = productList.size();
+        if (addedSize == 0) return;
+
         this.productList.addAll(productList);
+        this.notifyItemRangeChanged(prevSize, addedSize);
+
     }
 
     public boolean canLoadMore(LinearLayoutManager layoutManager){

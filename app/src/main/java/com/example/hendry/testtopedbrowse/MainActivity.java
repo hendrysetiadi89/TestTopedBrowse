@@ -219,8 +219,6 @@ public class MainActivity extends AppCompatActivity
         if (productAdapter.isIsLoading()) {
             productAdapter.setLoading(false);
             productAdapter.addMoreData(data);
-            productAdapter.notifyDataSetChanged();
-
             fastScroller.setVisibility(View.VISIBLE);
         }
         else {
