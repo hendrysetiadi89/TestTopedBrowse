@@ -24,7 +24,7 @@ import java.util.List;
 
 public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    // 2 item before loadmore
+    // how many item before loadmore
     public static final int VISIBLE_THRESHOLD = 1;
 
     //TYPE
@@ -49,7 +49,7 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         @Override
         public void onClick(View view) {
             int position = getAdapterPosition();
-
+            // TODO onclick item
         }
     }
 
