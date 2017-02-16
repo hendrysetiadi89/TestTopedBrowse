@@ -112,25 +112,6 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
         return true;
     }
 
-    private void loadMore (){
-//        int startIndexForQuery = view.getStartIndexForQuery(TAG);
-//        if (context != null && context instanceof DiscoveryActivityPresenter) {
-//
-//            NetworkParam.Product productParam = ((DiscoveryActivityPresenter) context).getProductParam();
-//
-//            Log.d(TAG, "Product Params " + productParam.toString());
-//            if (productParam == null)
-//                return;
-//
-//            productParam.start = Integer.toString(startIndexForQuery);
-//            productParam.breadcrumb = false;
-//            discoveryInteractor.getProducts(NetworkParam.generateNetworkParamProduct(productParam));
-//        }
-//
-//        break;
-        mIsLoading = true;
-    }
-
     @Override
     public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(mContext);
