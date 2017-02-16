@@ -12,6 +12,6 @@ import io.reactivex.disposables.CompositeDisposable;
 
 public interface ProductInteractor {
     void getProducts(HashMap<String, String> data,
-                     ProductView view,
+                     ProductInteractorImpl.InterfaceNetwork interfaceNetwork,
                      CompositeDisposable compositeDisposable);
 }

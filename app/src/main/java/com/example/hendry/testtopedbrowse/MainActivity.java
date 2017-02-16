@@ -34,7 +34,6 @@ import xyz.danoz.recyclerviewfastscroller.vertical.VerticalRecyclerViewFastScrol
 public class MainActivity extends AppCompatActivity
         implements SearchView.OnQueryTextListener, ProductView {
 
-    private SearchView mSearchView;
     private ProductAdapter productAdapter;
 
     @BindView(R.id.recycler_view)
@@ -61,13 +60,16 @@ public class MainActivity extends AppCompatActivity
         getSupportActionBar().setTitle("Product List");
 
         initCompositeDisposable();
-        productPresenter = new ProductPresenterImpl(this);
 
         unbinder = ButterKnife.bind(this);
 
+        productPresenter = new ProductPresenterImpl(this);
+
+        productAdapter = new ProductAdapter(this, null);
+
         mLayoutManager = new GridLayoutManager(this, 2);
         recyclerView.setLayoutManager(mLayoutManager);
-        recyclerView.setAdapter(productAdapter = new ProductAdapter(this, null));
+        recyclerView.setAdapter(productAdapter);
 
         fastScroller.setRecyclerView(recyclerView);
 
@@ -90,7 +92,6 @@ public class MainActivity extends AppCompatActivity
                     productAdapter.setLoading(true);
                     productPresenter.loadMore(
                             productAdapter.getProductSize(),
-                            MainActivity.this,
                             mCompositeDisposable);
                 }
             }
@@ -146,7 +147,7 @@ public class MainActivity extends AppCompatActivity
                     strings.add(s);
                     return strings;
                 }
-        )
+                )
                 .flatMap(Observable::fromIterable)
                 .subscribe(s -> Log.i("Test", s));
     }
@@ -165,9 +166,9 @@ public class MainActivity extends AppCompatActivity
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_main, menu);
         MenuItem searchItem = menu.findItem(R.id.action_search);
-        mSearchView = (SearchView) searchItem.getActionView();
-        mSearchView.setOnQueryTextListener(this);
-        mSearchView.setQueryHint("Search");
+        SearchView searchView = (SearchView) searchItem.getActionView();
+        searchView.setOnQueryTextListener(this);
+        searchView.setQueryHint("Search");
         return true;
     }
 
@@ -195,6 +196,7 @@ public class MainActivity extends AppCompatActivity
         }
     }
 
+
     @Override
     public boolean onQueryTextSubmit(String keyword) {
         productAdapter.setData(null);
@@ -202,7 +204,6 @@ public class MainActivity extends AppCompatActivity
         Log.i("Test", "On Submit Search");
         productPresenter.onInitSearchProduct(keyword,
                 0,
-                this,
                 mCompositeDisposable);
         View view = getCurrentFocus();
         if (view != null) {
@@ -220,7 +221,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     @Override
-    public void setAdapter(List<Product> data) {
+    public void setAdapterData(List<Product> data) {
         // might come from load more
         if (productAdapter.isIsLoading()) {
             productAdapter.setLoading(false);

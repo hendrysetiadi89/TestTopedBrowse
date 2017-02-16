@@ -9,6 +9,6 @@ import java.util.List;
  */
 
 public interface ProductView {
-    void setAdapter(List<Product> data);
+    void setAdapterData(List<Product> data);
     void showLoadingProgress(boolean isShow);
 }

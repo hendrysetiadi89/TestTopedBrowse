@@ -162,4 +162,8 @@ public class ProductAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder
     public int getProductSize() {
         return productList.size();
     }
+
+    public List<Product> getProductList() {
+        return productList;
+    }
 }

@@ -1,6 +1,11 @@
 package com.example.hendry.testtopedbrowse.presenter;
 
+import android.os.Bundle;
+
+import com.example.hendry.testtopedbrowse.network.model.Product;
 import com.example.hendry.testtopedbrowse.view.ProductView;
+
+import java.util.List;
 
 import io.reactivex.disposables.CompositeDisposable;
 
@@ -11,9 +16,7 @@ import io.reactivex.disposables.CompositeDisposable;
 public interface ProductPresenter {
     void onInitSearchProduct(String keyword,
                          int start,
-                         ProductView view,
                          CompositeDisposable compositeDisposable);
     void loadMore( int startFrom,
-                    ProductView view,
                     CompositeDisposable compositeDisposable);
 }
